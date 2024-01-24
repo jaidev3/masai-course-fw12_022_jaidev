@@ -6,6 +6,9 @@ const answersElement = document.getElementById('options');
 const timerElement = document.getElementById('time-left');
 const scoreElement = document.getElementById('current-score');
 const nextButton = document.getElementById('next-button');
+const currentScore = document.getElementById('current-score');
+
+
 
 // Define the quiz data
 const quizData = [
@@ -26,4 +29,34 @@ const quizData = [
     }    
 ];
 
+let num1 = 0
 // Add your js code here
+function que(num){
+    questionElement.innerHTML = ''
+    answersElement.innerHTML= ''
+    let questionText = document.createElement('h1');
+    questionText.innerText = quizData[num].question;
+    questionElement.appendChild(questionText); 
+    for(let i=0;i<4;i++){
+        let option = document.createElement('p');
+        option.innerText = ''
+        option.innerText = quizData[num].answers[i];
+        answersElement.appendChild(option);
+    }
+    currentScore.innerText = num + 1
+}
+que(num1)
+
+nextButton.addEventListener('click',()=>{
+  
+    num1++
+    if(num1<quizData.length){
+        que(num1)
+    }else if(num1==quizData.length){
+        questionElement.innerHTML = ''
+        answersElement.innerHTML= ''
+        let questionText = document.createElement('h1');
+        questionText.innerText = 'Quiz completed';
+        questionElement.appendChild(questionText); 
+    }
+})
