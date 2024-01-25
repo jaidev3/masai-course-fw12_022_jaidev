@@ -7,7 +7,7 @@ const timerElement = document.getElementById('time-left');
 const scoreElement = document.getElementById('current-score');
 const nextButton = document.getElementById('next-button');
 const currentScore = document.getElementById('current-score');
-
+const timeLeft = document.getElementById('time-left');
 
 
 // Define the quiz data
@@ -29,6 +29,19 @@ const quizData = [
     }    
 ];
 
+
+function timer (){
+    let time = 50
+    timeLeft.innerText = time;
+   let timer =  setInterval(()=>{
+    console.log(time--)
+    },1000)
+    if(time==0){
+        clearInterval(timer)
+    }
+}
+timer()
+
 let num1 = 0
 // Add your js code here
 function que(num){
@@ -45,6 +58,8 @@ function que(num){
     }
     currentScore.innerText = num + 1
 }
+
+
 que(num1)
 
 nextButton.addEventListener('click',()=>{
